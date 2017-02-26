@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Testing</title>
+    <style type="text/css" media="screen">
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <span class="error" v-show="!message">This field shouln't be empty. If you fill in, I will hide!</span>
+            <br>
+            <span class="error" v-if="!message">This field shouln't be empty. If you fill in, I will disappear completely from html!</span>
+            <br>
+            <textarea name="message" rows="10" cols="100" v-model="message"></textarea>
+            <br>
+            <button type="submit">Send it</button>
+        </form>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Testing</title>
+    <style type="text/css" media="screen">
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <counter subject="Likes"></counter>
+        <counter subject="Dislikes"></counter>
+    </div>
+<template id="counter-template">
+    <h1>{{ subject }}</h1>
+    <button @click="count+=1">Increment {{ count }}</button>
+</template>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+<script>
+    Vue.component('counter', {
+        template: '#counter-template',
+        props: ['subject'],
+        data: function () {
+            return { count: 0 }
+        }
+    });
+    new Vue({
+        el: '#app'
+    });
+
+    // Another way to make components
+    /*new Vue({
+        el: '#app',
+        components: {
+            counter: {
+                template: '#counter-template',
+                props: ['subject'],
+                data: function () {
+                    return { count: 0 }
+                }
+            }
+        }
+    });*/
+    // Or Another
+    /*new Vue({
+        el: '#app',
+        components: {
+            counter: Counter // this one should be imported from other file
+        }
+    });*/
+</script>
+</body>
+</html>

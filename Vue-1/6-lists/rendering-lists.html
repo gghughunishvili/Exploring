@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Testing</title>
+    <style type="text/css" media="screen">
+        .error { color: red; }
+        .success { color: green; }
+        .completed { text-decoration: line-through; }
+        .remove-btn{
+            color: red;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <tasks :list="tasks"></tasks>
+    </div>
+
+    <template id="tasks-template">
+        <h2>
+            My Tasks
+            <span v-show="remaining">({{ remaining }})</span>
+        </h2>
+        <ul v-show="list.length">
+            <li :class="{'completed': task.completed}" 
+                v-for="task in list"
+                @click="task.completed = !task.completed"
+            >
+                {{ task.body }}
+                <strong @click="deleteTask(task)" class="remove-btn">x</strong>
+            </li>
+        </ul>
+        <p v-else>No tasks yet!</p>
+        <button v-show="list.length" @click="clearCompleted">Clear Completed</button>
+    </template>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
